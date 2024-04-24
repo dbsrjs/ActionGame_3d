@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 4862
+  controlID: 50
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 4787
+  controlID: 19
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -193,8 +193,8 @@ MonoBehaviour:
     y: 482
     width: 955
     height: 457
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 4863
+  controlID: 103
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -296,8 +296,8 @@ MonoBehaviour:
     y: 623
     width: 344
     height: 316
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -771,9 +771,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -7.061057, y: 4.6456623, z: -17.040382}
+    m_Target: {x: 12.25832, y: 9.829182, z: 6.558775}
     speed: 2
-    m_Value: {x: -7.061057, y: 4.6456623, z: -17.040382}
+    m_Value: {x: 12.25832, y: 9.829182, z: 6.558775}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -819,13 +819,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.27362484, y: -0.508418, z: 0.17426857, w: -0.79794216}
+    m_Target: {x: -0.36225224, y: 0.51413035, z: -0.2534197, w: -0.7353391}
     speed: 2
-    m_Value: {x: -0.27382562, y: -0.50710887, z: 0.17381965, w: -0.798528}
+    m_Value: {x: -0.36216137, y: 0.51400137, z: -0.25335613, w: -0.7351546}
   m_Size:
-    m_Target: 2.045384
+    m_Target: 6.685612
     speed: 2
-    m_Value: 1.9573052
+    m_Value: 6.685612
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -888,14 +888,14 @@ MonoBehaviour:
     m_KeySerializationHelper:
     - {fileID: -3808453129770190370, guid: d7b823137a3314343af05895336ef98b, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.9430738
+    - e00: 0.863796
       e01: 0
       e02: 0
-      e03: -89.14629
+      e03: -198.75043
       e10: 0
-      e11: 0.9430738
+      e11: 0.863796
       e12: 0
-      e13: -160.08844
+      e13: -91.090126
       e20: 0
       e21: 0
       e22: 1
@@ -959,21 +959,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 241fffff6220ffffd2870000
+      m_ExpandedIDs: 9ad3feffce1cffffd61cffffda1cffff0e1dffff441effff821fffff308900006289000074890000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Weapon Grenade
-        m_OriginalName: Weapon Grenade
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -136126
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 4
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 9}
       m_SearchString: 
@@ -1028,7 +1028,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/1.Prefabs
+    - Packages
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1044,7 +1044,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: c87f0000
     m_LastClickedID: 32712
-    m_ExpandedIDs: fffffffffa05000022060000f20600004607000062070000
+    m_ExpandedIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1069,10 +1069,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 0}
+    scrollPos: {x: 0, y: 676}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000fa05000022060000e6060000f20600004607000062070000f0ba0000
+    m_ExpandedIDs: fffffffffa050000220600007a060000e6060000f60600003e07000012860000ffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
