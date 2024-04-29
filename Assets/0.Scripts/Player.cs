@@ -7,6 +7,17 @@ public class Player : MonoBehaviour
     public float speed; //속도
     public GameObject[] weapons;    //무기
     public bool[] hasWeapons;       //갖고 있는지 없는지
+    public GameObject[] grenades;   //수류탄
+
+    public int ammo;            //현재 갖고 있는 총알 개수
+    public int coin;            //현재 갖고 있는 코인 개수
+    public int health;          //현재 체력
+    public int hasGrenades;     //현재 갖고 있는 수류탄 개수
+
+    public int maxAmmo;         //max 총알 개수
+    public int maxCoin;         //max 코인 개수
+    public int maxHealth;       //max 체력
+    public int maxHasGrenades;  //max 수류탄 개수
 
     float hAxis;
     float vAxis;
@@ -168,6 +179,39 @@ public class Player : MonoBehaviour
         {
             anim.SetBool("isJump", false);
             isJump = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Item")    //아이템 획득
+        {
+            Item item = other.GetComponent<Item>();
+            switch(item.type)
+            {
+                case Item.Type.Ammo:
+                    ammo += item.value;
+                    if (ammo > maxAmmo)
+                        ammo = maxAmmo; 
+                    break;
+                case Item.Type.Coin:
+                    coin += item.value;
+                    if (coin > maxCoin)
+                        coin = maxCoin;
+                    break;
+                case Item.Type.Heart:
+                    health += item.value;
+                    if (health > maxHealth)
+                        health = maxHealth;
+                    break;
+                case Item.Type.Grenade:
+                    grenades[hasGrenades].SetActive(true);
+                    hasGrenades += item.value;
+                    if (hasGrenades > maxHasGrenades)
+                        hasGrenades = maxHasGrenades;
+                    break;
+            }
+            Destroy(other.gameObject);
         }
     }
 
