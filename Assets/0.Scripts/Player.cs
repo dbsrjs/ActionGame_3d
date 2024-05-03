@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     bool wDown; //걷기 달리기
     bool jDown; //점프
     bool iDown; //e키를 눌렀을 때
+    bool fDown; //좌클릭을 눌렀을 때
 
     bool sDown1;    //1키를 눌렀을 때
     bool sDown2;    //2키를 눌렀을 때
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour
     bool isJump;    //점프 중일 때
     bool isDodge;   //회피 중일 때
     bool isSwap;     //스왑 중일 때
+    bool isFireReady = true; //망치를 휘두를 수 있을 때
 
     Vector3 moveVec;    //이동 좌표
     Vector3 dodgeVec;   //회피를 사용했을 때의 위치를 저장
@@ -41,8 +43,10 @@ public class Player : MonoBehaviour
     Rigidbody rigid;
 
     GameObject nearObject;  //Player와 충돌중인 Weapon
-    GameObject equipWeapon; //현재 갖고 있는 Weapon
+    Weapon equipWeapon; //현재 갖고 있는 Weapon
     int equipWeaponIndex = -1;   //현재 장착중인 Weapon
+    float fireDelay;        //딜레이
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
@@ -56,6 +60,7 @@ public class Player : MonoBehaviour
         Move();
         Turn();
         Jump();
+        Attack();
         Dodge();
         Swap();
         Interation();
@@ -67,6 +72,7 @@ public class Player : MonoBehaviour
         vAxis = Input.GetAxisRaw("Vertical");
         wDown = Input.GetButton("Walk");            //reft shift
         jDown = Input.GetButtonDown("Jump");        //space
+        fDown = Input.GetButtonDown("Fire1");
         iDown = Input.GetButtonDown("Interation");  //e
         sDown1 = Input.GetButtonDown("Swap1");      //1
         sDown2 = Input.GetButtonDown("Swap2");      //2
@@ -80,7 +86,7 @@ public class Player : MonoBehaviour
         if (isDodge)    //회피를 하고 있다면 방향을 못 바꾸도록 설정
             moveVec = dodgeVec;
 
-        if (isSwap)
+        if (isSwap || !isFireReady) //무기를 바꾸거나 망치를 휘두르고 있을 때
             moveVec = Vector3.zero;
 
         transform.position += moveVec * speed * (wDown ? 0.5f : 1f) * Time.deltaTime;   //wDown 걷고 있을 땐 속도가 0.5 달리고 있을 땐 1
@@ -104,6 +110,22 @@ public class Player : MonoBehaviour
             isJump = true;
         }
    }
+
+    void Attack()
+    {
+        if (equipWeapon == null)
+            return;
+
+        fireDelay += Time.deltaTime;
+        isFireReady = equipWeapon.rate < fireDelay;
+
+        if(fDown && isFireReady && !isDodge && !isSwap)
+        {
+            equipWeapon.Use();
+            anim.SetTrigger("doSwing");
+            fireDelay = 0;
+        }
+    }
 
     void Dodge()
     {
@@ -139,11 +161,11 @@ public class Player : MonoBehaviour
         if ((sDown1 || sDown2 || sDown3) && !isJump && !isDodge) //1, 2, 3키중 하나라도 눌렀을 때
         {
             if (equipWeapon != null)
-                equipWeapon.SetActive(false);
+                equipWeapon.gameObject.SetActive(false);
 
             equipWeaponIndex = weaponIndex;
-            equipWeapon = weapons[weaponIndex];
-            equipWeapon.SetActive(true);
+            equipWeapon = weapons[weaponIndex].GetComponent<Weapon>();
+            equipWeapon.gameObject.SetActive(true);
 
             anim.SetTrigger("doSwap");
 
