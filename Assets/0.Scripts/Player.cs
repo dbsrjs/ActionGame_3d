@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
     bool isSwap;     //스왑 중일 때
     bool isReload;  //장전 중일 때
     bool isFireReady = true; //망치를 휘두를 수 있을 때
+    bool isBorder;  //경계선에 닿았나 안 닿았나
 
     float fireDelay;        //딜레이
 
@@ -99,10 +100,11 @@ public class Player : MonoBehaviour
         if (isDodge)    //회피를 하고 있다면 방향을 못 바꾸도록 설정
             moveVec = dodgeVec;
 
-        if (isSwap || !isFireReady || isReload) //무기를 바꾸거나 망치를 휘두르고 있을 때
+        if (isSwap || !isFireReady || isReload) //무기를 바꾸거나 망치를 휘두르고 있거나 장전하고 있을 때
             moveVec = Vector3.zero;
 
-        transform.position += moveVec * speed * (wDown ? 0.5f : 1f) * Time.deltaTime;   //wDown 걷고 있을 땐 속도가 0.5 달리고 있을 땐 1
+        if(!isBorder)
+            transform.position += moveVec * speed * (wDown ? 0.5f : 1f) * Time.deltaTime;   //wDown 걷고 있을 땐 속도가 0.5 달리고 있을 땐 1
 
         anim.SetBool("isRun", moveVec != Vector3.zero);
         anim.SetBool("isWalk", wDown);
@@ -242,6 +244,23 @@ public class Player : MonoBehaviour
                 Destroy(nearObject);
             }
         }
+    }
+
+    void FreezeRotation()
+    {
+        rigid.angularVelocity = Vector3.zero;   //angularVelocity : 물리 회전 속도
+        //"Wall"이라는 LayerMask를 가진 물체와 충돌하면 isBorder를 true로 반환함
+        isBorder = Physics.Raycast(transform.position, transform.forward, 5, LayerMask.GetMask("Wall"));  //Raycast : Ray를 쏘아 닿는 오브젝트를 감지하는 함수
+    }
+    void StopToWall()
+    {
+        Debug.DrawRay(transform.position, transform.forward *5, Color.green);   //DrawRay : Scene 내에서 Ray를 보여주는 함수
+    }
+
+    private void FixedUpdate()
+    {
+        FreezeRotation();
+        StopToWall();
     }
 
     private void OnCollisionEnter(Collision collision)
