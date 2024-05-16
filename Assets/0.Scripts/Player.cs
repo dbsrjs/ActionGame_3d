@@ -37,14 +37,19 @@ public class Player : MonoBehaviour
     public GameObject[] grenades;   //수류탄
     public int maxHasGrenades;      //max 수류탄 개수
     public int hasGrenades;         //현재 갖고 있는 수류탄 개수
+    public GameObject grenadeObj;   //던질 수류탄
 
     [Header("MoveButton")]
     bool wDown; //w키를 눌렀을 때(달리기)
     bool jDown; //스페이스바를 눌렀을 때(점프)
     bool iDown; //e키를 눌렀을 때(획득)
+
+    [Header("MoveButton")]
     bool fDown; //좌클릭을 눌렀을 때(공격)
+    bool gDown; //우클럭을 눌렀을 때(수류탄 투척)
     bool rDown; //r키를 눌렀을 때(재장전)
 
+    [Header("SwopButton")]
     bool sDown1;    //1키를 눌렀을 때(스왑)
     bool sDown2;    //2키를 눌렀을 때(스왑)
     bool sDown3;    //3키를 눌렀을 때(스왑)
@@ -72,6 +77,7 @@ public class Player : MonoBehaviour
         Move();
         Turn();
         Jump();
+        Grenade();
         Attack();
         Reload();
         Dodge();
@@ -86,6 +92,7 @@ public class Player : MonoBehaviour
         wDown = Input.GetButton("Walk");            //reft shift
         jDown = Input.GetButtonDown("Jump");        //space
         fDown = Input.GetButton("Fire1");           //총알 발사
+        gDown = Input.GetButton("Fire2");           //총알 발사
         rDown = Input.GetButtonDown("Reload");      //재장전
         iDown = Input.GetButtonDown("Interation");  //e
         sDown1 = Input.GetButtonDown("Swap1");      //1
@@ -140,6 +147,30 @@ public class Player : MonoBehaviour
         }
    }
 
+    void Grenade()
+    {
+        if (hasGrenades == 0)
+            return;
+
+        if(gDown && !isReload && !isSwap)   // 수류탄을 던질 때, 장전중이 아닐 때, 스왑중이 아닐 때
+        {
+            Ray ray = followCamera.ScreenPointToRay(Input.mousePosition);//ScreenPointToRay : 스크린에서 월드로 Ray를 쏘는 함수
+            RaycastHit rayHit;
+            if (Physics.Raycast(ray, out rayHit, 100))//out : return처럼 반환값을 주어진 변수에 저장하는 키워드
+            {
+                Vector3 nextVec = rayHit.point - transform.position;
+                nextVec.y = 12;
+
+                GameObject instantGrenade = Instantiate(grenadeObj, transform.position, transform.rotation);
+                Rigidbody rigidGrenade = instantGrenade.GetComponent<Rigidbody>();
+                rigidGrenade.AddForce(nextVec, ForceMode.Impulse);
+                rigidGrenade.AddTorque(Vector3.back * 10, ForceMode.Impulse);
+
+                hasGrenades--;  //현재 갖고 있는 수류탄을 하나 줄여줌
+                grenades[hasGrenades].SetActive(false);
+            }
+        }
+    }
     void Attack()
     {
         if (equipWeapon == null)    //갖고 있는 무기가 없다면
