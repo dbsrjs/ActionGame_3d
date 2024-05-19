@@ -1,21 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
     public int maxHealth;
     public int curHealth;
+    public Transform target;
+    public bool isChase;
 
     Rigidbody rigid;
     BoxCollider boxCollider;
     Material mat;
+    NavMeshAgent nav;
+    Animator anim;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
-        mat = GetComponent<MeshRenderer>().material; //Material은 MeshRenderer 컴포넌트에서 접근 가능
+        mat = GetComponentInChildren<MeshRenderer>().material; //Material은 MeshRenderer 컴포넌트에서 접근 가능
+        nav = GetComponent<NavMeshAgent>();
+        anim = GetComponentInChildren<Animator>();
+
+        Invoke("ChaseStart", 2);
+    }
+
+    void ChaseStart()
+    {
+        isChase = true;
+        anim.SetBool("isWalk", true);
+    }
+
+    private void Update()
+    {
+        if(isChase)
+            nav.SetDestination(target.position);    //SetDestination : 도착할 위치 지정 함수
+    }
+
+    void FreezeVelocity()
+    {
+        if(isChase)
+        {
+            rigid.velocity = Vector3.zero;   //angularVelocity : 물리 회전 속도
+            rigid.angularVelocity = Vector3.zero;//angularVelocity : 회전력
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        FreezeVelocity();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -57,6 +92,9 @@ public class Enemy : MonoBehaviour
         {
             mat.color = Color.gray;
             gameObject.layer = 12;
+            isChase = false;
+            nav.enabled = false;
+            anim.SetTrigger("doDie");
 
             if(isGrenade)
             {
