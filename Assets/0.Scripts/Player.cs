@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     Rigidbody rigid;
     GameObject nearObject;  //Player와 충돌중인 Weapon
     Weapon equipWeapon; //현재 갖고 있는 Weapon
+    MeshRenderer[] meshs;
 
     [Header("move")]
     public float speed; //속도
@@ -61,6 +62,7 @@ public class Player : MonoBehaviour
     bool isReload;  //장전 중일 때
     bool isFireReady = true; //망치를 휘두를 수 있을 때
     bool isBorder;  //경계선에 닿았나 안 닿았나
+    bool isDamage;  //데미지를 입었을 때
 
     float fireDelay;        //딜레이
 
@@ -68,6 +70,7 @@ public class Player : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();  //GetComponentInChildren : 자식한테 있는 컴포넌트 갖고 오기
+        meshs = GetComponentsInChildren<MeshRenderer>();
     }
 
     // Update is called once per frame
@@ -334,6 +337,37 @@ public class Player : MonoBehaviour
             }
             Destroy(other.gameObject);
         }
+
+        else if(other.tag == "EnemyBullet")
+        {
+            if(!isDamage)
+            {
+                Bullet enemyBullet = other.GetComponent<Bullet>();
+                health -= enemyBullet.damage;
+                if(other.gameObject.GetComponent<Rigidbody>() != null)  //미사일과 충돌
+                    Destroy(other.gameObject);
+
+                StartCoroutine(OnDamage());
+            }
+        }
+    }
+
+    IEnumerator OnDamage()
+    {
+        isDamage = true;
+
+        foreach(MeshRenderer mesh in meshs)
+        {
+            mesh.material.color = Color.grey;
+        }
+
+        yield return new WaitForSeconds(1f);
+        foreach (MeshRenderer mesh in meshs)
+        {
+            mesh.material.color = Color.white;
+        }
+        
+        isDamage = false;
     }
 
     private void OnTriggerStay(Collider other)
