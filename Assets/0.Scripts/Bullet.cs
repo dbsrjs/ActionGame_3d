@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.tag == "Wall" && !isMelee)
         {
-            Destroy(gameObject); //3초 뒤에 삭제
+            Destroy(gameObject);
         }
     }
 }

@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 84
+  controlID: 70
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 83
+  controlID: 26
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -270,8 +270,8 @@ MonoBehaviour:
     y: 0
     width: 430
     height: 939
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -421,7 +421,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 73
-    width: 1028
+    width: 878
     height: 461
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -525,7 +525,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 30fbffff
+      m_ExpandedIDs: 3e15ffff6016fffff417ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -641,7 +641,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/0.Scripts
+    - Assets/QuarterView 3D Action BE5
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -658,7 +658,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: fa050000
     m_LastClickedID: 1530
-    m_ExpandedIDs: 00000000245f0000265f0000285f00002a5f0000
+    m_ExpandedIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -683,24 +683,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 241}
+    scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000245f0000265f0000285f00002a5f0000a45f0000
+    m_ExpandedIDs: ffffffff00000000fa050000ea060000ee060000fa060000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Enemy D
+      m_OriginalName: Enemy D
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 36258
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -1170,9 +1170,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1.6505461, y: -2.7123747, z: -3.323625}
+    m_Target: {x: 0, y: 0, z: 14.76}
     speed: 2
-    m_Value: {x: 1.6505461, y: -2.7123747, z: -3.323625}
+    m_Value: {x: 0, y: 0, z: 14.76}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1218,13 +1218,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.31373495, y: -0.42691004, z: 0.16097888, w: 0.8329106}
+    m_Target: {x: 0.3459526, y: -0.228569, z: 0.08744392, w: 0.9059609}
     speed: 2
-    m_Value: {x: -0.31373495, y: 0.42691004, z: -0.16097888, w: -0.8329106}
+    m_Value: {x: 0.34589404, y: -0.22853032, z: 0.08742912, w: 0.9058076}
   m_Size:
-    m_Target: 13.408031
+    m_Target: 10
     speed: 2
-    m_Value: 13.408031
+    m_Value: 10
   m_Ortho:
     m_Target: 0
     speed: 2

@@ -344,15 +344,17 @@ public class Player : MonoBehaviour
             {
                 Bullet enemyBullet = other.GetComponent<Bullet>();
                 health -= enemyBullet.damage;
-                if(other.gameObject.GetComponent<Rigidbody>() != null)  //미사일과 충돌
-                    Destroy(other.gameObject);
 
-                StartCoroutine(OnDamage());
+                bool isBossAtk = other.name == "Boss Melee Area";
+                StartCoroutine(OnDamage(isBossAtk));
             }
+
+            if (other.gameObject.GetComponent<Rigidbody>() != null)  //미사일과 충돌
+                Destroy(other.gameObject);
         }
     }
 
-    IEnumerator OnDamage()
+    IEnumerator OnDamage(bool isBossAttack)
     {
         isDamage = true;
 
@@ -361,13 +363,19 @@ public class Player : MonoBehaviour
             mesh.material.color = Color.grey;
         }
 
+        if (isBossAttack)
+            rigid.AddForce(transform.forward * -25, ForceMode.Impulse); //넉백 구현
+
         yield return new WaitForSeconds(1f);
+
+        isDamage = false;
         foreach (MeshRenderer mesh in meshs)
         {
             mesh.material.color = Color.white;
         }
-        
-        isDamage = false;
+
+        if (isBossAttack)
+            rigid.velocity = Vector3.zero;
     }
 
     private void OnTriggerStay(Collider other)
