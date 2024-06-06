@@ -7,19 +7,19 @@
       "RelativeMoniker": "D:0:0:{87AE37C9-6BE6-9EBE-4DEC-B46DE0F5664F}|Assembly-CSharp.csproj|solutionrelative:assets\\0.scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{87AE37C9-6BE6-9EBE-4DEC-B46DE0F5664F}|Assembly-CSharp.csproj|c:\\users\\com\\onedrive\\\uBC14\uD0D5 \uD654\uBA74\\actiongame_3d\\assets\\0.scripts\\boss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87AE37C9-6BE6-9EBE-4DEC-B46DE0F5664F}|Assembly-CSharp.csproj|solutionrelative:assets\\0.scripts\\boss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87AE37C9-6BE6-9EBE-4DEC-B46DE0F5664F}|Assembly-CSharp.csproj|c:\\users\\com\\onedrive\\\uBC14\uD0D5 \uD654\uBA74\\actiongame_3d\\assets\\0.scripts\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{87AE37C9-6BE6-9EBE-4DEC-B46DE0F5664F}|Assembly-CSharp.csproj|C:\\Users\\com\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\ActionGame_3d\\assets\\0.scripts\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{87AE37C9-6BE6-9EBE-4DEC-B46DE0F5664F}|Assembly-CSharp.csproj|solutionrelative:assets\\0.scripts\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{87AE37C9-6BE6-9EBE-4DEC-B46DE0F5664F}|Assembly-CSharp.csproj|c:\\users\\com\\onedrive\\\uBC14\uD0D5 \uD654\uBA74\\actiongame_3d\\assets\\0.scripts\\bossrock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{87AE37C9-6BE6-9EBE-4DEC-B46DE0F5664F}|Assembly-CSharp.csproj|C:\\Users\\com\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\ActionGame_3d\\assets\\0.scripts\\boss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87AE37C9-6BE6-9EBE-4DEC-B46DE0F5664F}|Assembly-CSharp.csproj|solutionrelative:assets\\0.scripts\\boss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87AE37C9-6BE6-9EBE-4DEC-B46DE0F5664F}|Assembly-CSharp.csproj|C:\\Users\\com\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\ActionGame_3d\\assets\\0.scripts\\bossrock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{87AE37C9-6BE6-9EBE-4DEC-B46DE0F5664F}|Assembly-CSharp.csproj|solutionrelative:assets\\0.scripts\\bossrock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{87AE37C9-6BE6-9EBE-4DEC-B46DE0F5664F}|Assembly-CSharp.csproj|c:\\users\\com\\onedrive\\\uBC14\uD0D5 \uD654\uBA74\\actiongame_3d\\assets\\0.scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{87AE37C9-6BE6-9EBE-4DEC-B46DE0F5664F}|Assembly-CSharp.csproj|C:\\Users\\com\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\ActionGame_3d\\assets\\0.scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{87AE37C9-6BE6-9EBE-4DEC-B46DE0F5664F}|Assembly-CSharp.csproj|solutionrelative:assets\\0.scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -53,27 +53,27 @@
               "RelativeDocumentMoniker": "Assets\\0.Scripts\\Player.cs",
               "ToolTip": "C:\\Users\\com\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\ActionGame_3d\\Assets\\0.Scripts\\Player.cs",
               "RelativeToolTip": "Assets\\0.Scripts\\Player.cs",
-              "ViewState": "AQIAACAAAAAAAAAAAADwvywAAAAiAAAA",
+              "ViewState": "AQIAAJoAAAAAAAAAAAAgwKsAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-03T16:14:04.686Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Bullet.cs",
               "DocumentMoniker": "C:\\Users\\com\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\ActionGame_3d\\Assets\\0.Scripts\\Bullet.cs",
               "RelativeDocumentMoniker": "Assets\\0.Scripts\\Bullet.cs",
               "ToolTip": "C:\\Users\\com\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\ActionGame_3d\\Assets\\0.Scripts\\Bullet.cs",
               "RelativeToolTip": "Assets\\0.Scripts\\Bullet.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAADwvxYAAAAgAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-03T16:13:41.872Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Boss.cs",
               "DocumentMoniker": "C:\\Users\\com\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\ActionGame_3d\\Assets\\0.Scripts\\Boss.cs",
               "RelativeDocumentMoniker": "Assets\\0.Scripts\\Boss.cs",
@@ -94,8 +94,7 @@
               "RelativeToolTip": "Assets\\0.Scripts\\Enemy.cs",
               "ViewState": "AQIAADQAAAAAAAAAAAAUwD8AAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T14:12:11.962Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T14:12:11.962Z"
             }
           ]
         }
