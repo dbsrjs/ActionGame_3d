@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
     bool isFireReady = true; //망치를 휘두를 수 있을 때
     bool isBorder;  //경계선에 닿았나 안 닿았나
     bool isDamage;  //데미지를 입었을 때
+    bool isShop;    //상점을 이용 중일 때
 
     float fireDelay;        //딜레이
 
@@ -155,7 +156,7 @@ public class Player : MonoBehaviour
         if (hasGrenades == 0)
             return;
 
-        if(gDown && !isReload && !isSwap)   // 수류탄을 던질 때, 장전중이 아닐 때, 스왑중이 아닐 때
+        if(gDown && !isReload && !isSwap && !isShop)   // 수류탄을 던질 때, 장전중이 아닐 때, 스왑중이 아닐 때
         {
             Ray ray = followCamera.ScreenPointToRay(Input.mousePosition);//ScreenPointToRay : 스크린에서 월드로 Ray를 쏘는 함수
             RaycastHit rayHit;
@@ -182,7 +183,7 @@ public class Player : MonoBehaviour
         fireDelay += Time.deltaTime;
         isFireReady = equipWeapon.rate < fireDelay;
 
-        if(fDown && isFireReady && !isDodge && !isSwap)
+        if(fDown && isFireReady && !isDodge && !isSwap && !isShop)
         {
             equipWeapon.Use();
             anim.SetTrigger(equipWeapon.type == Weapon.Type.Melee ? "doSwing" : "doShot");
@@ -195,7 +196,7 @@ public class Player : MonoBehaviour
         if (equipWeapon == null || equipWeapon.type == Weapon.Type.Melee || ammo == 0)
             return;
 
-        if(rDown && !isJump && !isDodge && !isSwap && isFireReady)
+        if(rDown && !isJump && !isDodge && !isSwap && isFireReady && !isShop)
         {
             anim.SetTrigger("doReload");
             isReload = true;
@@ -276,6 +277,12 @@ public class Player : MonoBehaviour
                 hasWeapons[weaponIndex] = true;
 
                 Destroy(nearObject);
+            }
+            else if(nearObject.tag == "Shop")
+            {
+                Shop shop = nearObject.GetComponent<Shop>();
+                shop.Enter(this);
+                isShop = true;
             }
         }
     }
@@ -380,7 +387,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Weapon")
+        if (other.tag == "Weapon" || other.tag == "Shop")
             nearObject = other.gameObject;
     }
 
@@ -388,5 +395,12 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "Weapon")
             nearObject = null;
+        else if(other.tag == "Shop")
+        {
+            Shop shop = other.gameObject.GetComponent<Shop>();
+            shop.Exit();
+            isShop = false;
+            nearObject = null;
+        }
     }
 }
