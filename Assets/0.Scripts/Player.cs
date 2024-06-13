@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     GameObject nearObject;  //Player와 충돌중인 Weapon
     public Weapon equipWeapon; //현재 갖고 있는 Weapon
     MeshRenderer[] meshs;
+    public GameManager manager;
 
     [Header("move")]
     public float speed; //속도
@@ -46,7 +47,7 @@ public class Player : MonoBehaviour
     bool jDown; //스페이스바를 눌렀을 때(점프)
     bool iDown; //e키를 눌렀을 때(획득)
 
-    [Header("MoveButton")]
+    [Header("GunButton")]
     bool fDown; //좌클릭을 눌렀을 때(공격)
     bool gDown; //우클럭을 눌렀을 때(수류탄 투척)
     bool rDown; //r키를 눌렀을 때(재장전)
@@ -65,6 +66,7 @@ public class Player : MonoBehaviour
     bool isBorder;  //경계선에 닿았나 안 닿았나
     bool isDamage;  //데미지를 입었을 때
     bool isShop;    //상점을 이용 중일 때
+    bool isDead;    //죽었을 때
 
     float fireDelay;        //딜레이
 
@@ -73,9 +75,6 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();  //GetComponentInChildren : 자식한테 있는 컴포넌트 갖고 오기
         meshs = GetComponentsInChildren<MeshRenderer>();
-
-        Debug.Log(PlayerPrefs.GetInt("MaxScore"));
-        //PlayerPrefs.SetInt("MaxScore", 112500);    //PlayerPrefs : 유니티에서 제공하는 간단한 저장 기능
     }
 
     // Update is called once per frame
@@ -115,7 +114,7 @@ public class Player : MonoBehaviour
         if (isDodge)    //회피를 하고 있다면 방향을 못 바꾸도록 설정
             moveVec = dodgeVec;
 
-        if (isSwap || !isFireReady || isReload) //무기를 바꾸거나 망치를 휘두르고 있거나 장전하고 있을 때
+        if (isSwap || !isFireReady || isReload || isDead) //무기를 바꾸거나 망치를 휘두르고 있거나 장전하고 있을 때
             moveVec = Vector3.zero;
 
         if(!isBorder)
@@ -131,7 +130,7 @@ public class Player : MonoBehaviour
         transform.LookAt(transform.position + moveVec); //플레이어에 이동 방향에 따라 Rotation도 같이 움직임
 
         //#마우스를 이용한 회전
-        if(fDown)
+        if(fDown && !isDead)
         {
             Ray ray = followCamera.ScreenPointToRay(Input.mousePosition);//ScreenPointToRay : 스크린에서 월드로 Ray를 쏘는 함수
             RaycastHit rayHit;
@@ -146,7 +145,7 @@ public class Player : MonoBehaviour
 
    void Jump()
     {
-        if (jDown && moveVec == Vector3.zero && !isJump && !isDodge && !isSwap)   //Jump(Space)키를 눌렀고, isJump(땅에 닿아 있을 때)가 false일 때
+        if (jDown && moveVec == Vector3.zero && !isJump && !isDodge && !isSwap && !isDead)   //Jump(Space)키를 눌렀고, isJump(땅에 닿아 있을 때)가 false일 때
         {
             rigid.AddForce(Vector3.up * 15, ForceMode.Impulse);
             anim.SetBool("isJump", true);
@@ -160,7 +159,7 @@ public class Player : MonoBehaviour
         if (hasGrenades == 0)
             return;
 
-        if(gDown && !isReload && !isSwap && !isShop)   // 수류탄을 던질 때, 장전중이 아닐 때, 스왑중이 아닐 때
+        if(gDown && !isReload && !isSwap && !isShop && !isDead)   // 수류탄을 던질 때, 장전중이 아닐 때, 스왑중이 아닐 때
         {
             Ray ray = followCamera.ScreenPointToRay(Input.mousePosition);//ScreenPointToRay : 스크린에서 월드로 Ray를 쏘는 함수
             RaycastHit rayHit;
@@ -187,7 +186,7 @@ public class Player : MonoBehaviour
         fireDelay += Time.deltaTime;
         isFireReady = equipWeapon.rate < fireDelay;
 
-        if(fDown && isFireReady && !isDodge && !isSwap && !isShop)
+        if(fDown && isFireReady && !isDodge && !isSwap && !isShop && !isDead)
         {
             equipWeapon.Use();
             anim.SetTrigger(equipWeapon.type == Weapon.Type.Melee ? "doSwing" : "doShot");
@@ -200,12 +199,12 @@ public class Player : MonoBehaviour
         if (equipWeapon == null || equipWeapon.type == Weapon.Type.Melee || ammo == 0)
             return;
 
-        if(rDown && !isJump && !isDodge && !isSwap && isFireReady && !isShop)
+        if(rDown && !isJump && !isDodge && !isSwap && isFireReady && !isShop && !isDead)
         {
             anim.SetTrigger("doReload");
             isReload = true;
 
-            Invoke("ReloadOut", 1.2f);
+            Invoke("ReloadOut", 2f);
         }
     }
 
@@ -219,7 +218,7 @@ public class Player : MonoBehaviour
 
     void Dodge()
     {
-        if (jDown && moveVec != Vector3.zero && !isJump && !isDodge && !isSwap)   //Jump(Space)키를 눌렀고, isJump(땅에 닿아 있을 때)가 false일 때
+        if (jDown && moveVec != Vector3.zero && !isJump && !isDodge && !isSwap && !isDead)   //Jump(Space)키를 눌렀고, isJump(땅에 닿아 있을 때)가 false일 때
         {
             dodgeVec = moveVec;
             speed *= 2;
@@ -248,7 +247,7 @@ public class Player : MonoBehaviour
         if (sDown2) weaponIndex = 1;
         if (sDown3) weaponIndex = 2;
 
-        if ((sDown1 || sDown2 || sDown3) && !isJump && !isDodge) //1, 2, 3키중 하나라도 눌렀을 때
+        if ((sDown1 || sDown2 || sDown3) && !isJump && !isDodge && !isDead) //1, 2, 3키중 하나라도 눌렀을 때
         {
             if (equipWeapon != null)
                 equipWeapon.gameObject.SetActive(false);
@@ -272,7 +271,7 @@ public class Player : MonoBehaviour
 
     void Interation()
     {
-        if (iDown && nearObject != null && !isJump && !isDodge)  //E키를 눌렀고, 무기를 갖고 있고, 점프 혹은 회피를 안 했을 때
+        if (iDown && nearObject != null && !isJump && !isDodge && !isDead)  //E키를 눌렀고, 무기를 갖고 있고, 점프 혹은 회피를 안 했을 때
         {
             if(nearObject.tag == "Weapon")
             {
@@ -387,6 +386,18 @@ public class Player : MonoBehaviour
 
         if (isBossAttack)
             rigid.velocity = Vector3.zero;
+
+        if(hp <= 0 && !isDead) //죽었을 때
+        {
+            OnDie();
+        }
+    }
+
+    void OnDie()
+    {
+        anim.SetTrigger("doDie");
+        isDead = true;
+        manager.GameOver();
     }
 
     private void OnTriggerStay(Collider other)

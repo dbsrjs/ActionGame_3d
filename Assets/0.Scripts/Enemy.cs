@@ -8,11 +8,16 @@ public class Enemy : MonoBehaviour
     public enum Type { A, B, C, D };
     public Type enemyType;
 
-    public int maxHealth;
-    public int curHealth;
+    public int maxHp;
+    public int curHp;
+    public int score;
+
+    public GameManager manager;
     public Transform target;
     public BoxCollider meleeArea;
     public GameObject bullet;
+    public GameObject[] coins;
+
     public bool isChase;    //적을 쫓아가는 중
     public bool isAttack;   //공격을 하는 중
     public bool isDead;
@@ -147,14 +152,14 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Melee")  //근접
         { 
             Weapon weapon = other.GetComponent<Weapon>();
-            curHealth -= weapon.damage;
+            curHp -= weapon.damage;
             Vector3 reactVec = transform.position - other.transform.position;    //현재 위치에 피격 위치를 빼서 반작용 방향 구하기
             StartCoroutine(OnDamage(reactVec, false));
         }
         else if (other.tag == "Bullet")
         {
              Bullet bullet = other.GetComponent<Bullet>();
-            curHealth -= bullet.damage;
+            curHp -= bullet.damage;
             Vector3 reactVec = transform.position - other.transform.position;    //현재 위치에 피격 위치를 빼서 반작용 방향 구하기
             Destroy(other.gameObject);
             StartCoroutine(OnDamage(reactVec, false));
@@ -163,7 +168,7 @@ public class Enemy : MonoBehaviour
 
     public void HitByGrenade(Vector3 expolsoinPos)
     {
-        curHealth -= 100;
+        curHp -= 100;
         Vector3 reactVec = transform.position - expolsoinPos;
         StartCoroutine(OnDamage(reactVec, true));
     }
@@ -175,7 +180,7 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);  //0.1초 뒤
 
-        if(curHealth > 0)
+        if(curHp > 0)
         {
             foreach (MeshRenderer mesh in meshs)
                 mesh.material.color = Color.white;
@@ -190,6 +195,27 @@ public class Enemy : MonoBehaviour
             isChase = false;
             nav.enabled = false;
             anim.SetTrigger("doDie");
+
+            Player player = target.GetComponent<Player>();
+            player.score += score;
+            int ranCoin = Random.Range(0, 3);
+            Instantiate(coins[ranCoin], transform.position, Quaternion.identity);   //동전 생성
+
+            switch(enemyType)
+            {
+                case Type.A:
+                    manager.enemyCntA--;
+                    break;
+                case Type.B:
+                    manager.enemyCntB--;
+                    break;
+                case Type.C:
+                    manager.enemyCntC--;
+                    break;
+                case Type.D:
+                    manager.enemyCntD--;
+                    break;
+            }
 
             if(isGrenade)
             {
@@ -208,8 +234,7 @@ public class Enemy : MonoBehaviour
                 rigid.AddForce(reactVec * 5, ForceMode.Impulse);   //함수로 넉백 구현
             }
 
-            if (enemyType != Type.D)
-                Destroy(gameObject, 4);
+            Destroy(gameObject, 4);
         }
     }
 }

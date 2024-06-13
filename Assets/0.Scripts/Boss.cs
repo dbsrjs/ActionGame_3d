@@ -55,8 +55,8 @@ public class Boss : Enemy
         {
             case 0:
             case 1:         //미사일
-                /*StartCoroutine(MissileShot());
-                break;*/
+                StartCoroutine(MissileShot());
+                break;
             case 2:
             case 3:         //돌 굴리기
                 StartCoroutine(RockShot());
