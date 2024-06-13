@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     Animator anim;
     Rigidbody rigid;
     GameObject nearObject;  //Player와 충돌중인 Weapon
-    Weapon equipWeapon; //현재 갖고 있는 Weapon
+    public Weapon equipWeapon; //현재 갖고 있는 Weapon
     MeshRenderer[] meshs;
 
     [Header("move")]
@@ -27,8 +27,9 @@ public class Player : MonoBehaviour
     [Header("Item")]
     public int coin;            //현재 갖고 있는 코인 개수
     public int maxCoin;         //max 코인 개수
-    public int health;          //현재 체력
-    public int maxHealth;       //max 체력
+    public int hp;          //현재 체력
+    public int maxHp;       //max 체력
+    public int score;           //점수
 
     [Header("Ammo")]
     public int ammo;            //현재 갖고 있는 총알 개수
@@ -72,6 +73,9 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();  //GetComponentInChildren : 자식한테 있는 컴포넌트 갖고 오기
         meshs = GetComponentsInChildren<MeshRenderer>();
+
+        Debug.Log(PlayerPrefs.GetInt("MaxScore"));
+        //PlayerPrefs.SetInt("MaxScore", 112500);    //PlayerPrefs : 유니티에서 제공하는 간단한 저장 기능
     }
 
     // Update is called once per frame
@@ -331,9 +335,9 @@ public class Player : MonoBehaviour
                         coin = maxCoin;
                     break;
                 case Item.Type.Heart:
-                    health += item.value;
-                    if (health > maxHealth)
-                        health = maxHealth;
+                    hp += item.value;
+                    if (hp > maxHp)
+                        hp = maxHp;
                     break;
                 case Item.Type.Grenade:
                     grenades[hasGrenades].SetActive(true);
@@ -350,7 +354,7 @@ public class Player : MonoBehaviour
             if(!isDamage)
             {
                 Bullet enemyBullet = other.GetComponent<Bullet>();
-                health -= enemyBullet.damage;
+                hp -= enemyBullet.damage;
 
                 bool isBossAtk = other.name == "Boss Melee Area";
                 StartCoroutine(OnDamage(isBossAtk));
