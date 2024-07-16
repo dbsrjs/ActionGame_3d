@@ -18,7 +18,7 @@
 
 # Play Scene
   ## Start Scene
-  ![image](https://github.com/dbsrjs/Bouncy_BALL/assets/124150775/991793b2-a7d7-4a11-bb0d-9ee058ff4a24)
+  ![image](https://github.com/user-attachments/assets/6eab86e9-5b60-4b80-b9f5-32c4f13e6719)
 
   ## Play Scene
   ![image](https://github.com/dbsrjs/Bouncy_BALL/assets/124150775/1f468582-84e7-41a8-9c1f-bd6bfddfdd5e)
