@@ -1,20 +1,20 @@
 # ActionGame
 
 # Control
-- W = Move forward
-- A = Move Left
-- S = Move Back
-- D = Move Right
-- R = Restart the current stage
-- Space = Jump
+- W = 앞으로 이동
+- A = 왼쪽으로 이동
+- S = 뒤로 이동
+- D = 오른쪽으로 이동
+- R = 장전
+- Space = 점프 및 도약
 
 # Information
-1. If you enter the cylinder without acquiring rubies, you will restart the current stage.
-2. If it falls into the air, restart the current stage.
-3. Press the R key to restart the current stage.
+1. 5스테이지 마다 보스전이 진행됩니다.
+2. 
+3. 점수는 게임을 재시작해도 저장됩니다.
 
 # How to play video games
-- We get all the rubies and we go into the cylinder.
+- 아이템과 장비를 구매해서 스테이지를 높여가세요.
 
 # Play Scene
   ## Start Scene
