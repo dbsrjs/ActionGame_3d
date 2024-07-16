@@ -20,9 +20,14 @@
   ## Start Scene
   ![image](https://github.com/user-attachments/assets/6eab86e9-5b60-4b80-b9f5-32c4f13e6719)
 
-  ## Play Scene
-  ![image](https://github.com/dbsrjs/Bouncy_BALL/assets/124150775/1f468582-84e7-41a8-9c1f-bd6bfddfdd5e)
-  
-  ## End Scene
-  ![image](https://github.com/dbsrjs/Bouncy_BALL/assets/124150775/4f1753d4-7d19-4083-bdcb-648ee6fc9860)
+  ## Store
+  ### Weapon
+  ![image](https://github.com/user-attachments/assets/858d657a-abae-4134-babf-bed647fa24dd)
+  ### Item
+  ![image](https://github.com/user-attachments/assets/f0c1a8b1-c7a1-4812-b063-a19f82a15746)
 
+  ## Play Scene
+  ![image](https://github.com/user-attachments/assets/d67b879e-5cfb-4fb9-ad10-f7e65336d74a)
+
+  ## End Scene
+  ![image](https://github.com/user-attachments/assets/14ccfed8-6784-43dd-a270-6f4e2a3cea02)
