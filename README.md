@@ -18,7 +18,7 @@
 
 # Play Scene
   ## Start Scene
-    - 시작 화면에 최고 점수가 보입니다.
+    - 시작 화면에 최고 점수가 표기됩니다.
   ![image](https://github.com/user-attachments/assets/6eab86e9-5b60-4b80-b9f5-32c4f13e6719)
 
   ## Store
@@ -26,10 +26,13 @@
     - 무기 상점에서 해머, 핸드건, 서브머신건을 구매할 수 있습니다.
   ![image](https://github.com/user-attachments/assets/858d657a-abae-4134-babf-bed647fa24dd)
   ### Item
+    - 아이템 상점에서 체력, 탄약, 수류탄을 구매할 수 있습니다.
   ![image](https://github.com/user-attachments/assets/f0c1a8b1-c7a1-4812-b063-a19f82a15746)
 
-  ## Play Scene
+  ## Play Scene 
+    - 여러 UI를 통해 게임의 진행 상황을 알 수 있습니다.
   ![image](https://github.com/user-attachments/assets/d67b879e-5cfb-4fb9-ad10-f7e65336d74a)
 
   ## End Scene
+    - 게임이 종료되면 도달한 점수가 표기합니다.
   ![image](https://github.com/user-attachments/assets/14ccfed8-6784-43dd-a270-6f4e2a3cea02)
