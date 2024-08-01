@@ -23,6 +23,7 @@
 
   ## Store
   ### Weapon
+    - 무기 상점에서 해머, 핸드건, 서브머신건을 구매할 수 있습니다.
   ![image](https://github.com/user-attachments/assets/858d657a-abae-4134-babf-bed647fa24dd)
   ### Item
   ![image](https://github.com/user-attachments/assets/f0c1a8b1-c7a1-4812-b063-a19f82a15746)
