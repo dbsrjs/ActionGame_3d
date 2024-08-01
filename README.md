@@ -18,6 +18,7 @@
 
 # Play Scene
   ## Start Scene
+    - 시작 화면에 최고 점수가 보입니다.
   ![image](https://github.com/user-attachments/assets/6eab86e9-5b60-4b80-b9f5-32c4f13e6719)
 
   ## Store
